@@ -5,3 +5,10 @@ export const Container = styled.View`
 
   background-color: ${({ theme }) => theme.colors.background_primary};
 `;
+
+export const CarList = styled.FlatList.attrs({
+  contentContainerStyle: {
+    padding: 24,
+  },
+  showsVerticalScrollIndicator: true,
+})``;
