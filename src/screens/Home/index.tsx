@@ -1,12 +1,23 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import { Header } from '../../components/Header';
 import { Car } from '../../components/Car';
+import { RootStackParamList } from '../../routes/stack.routes';
 
 import { Container, CarList } from './styles';
 
+type HomeNavigation = StackNavigationProp<RootStackParamList, 'Home'>;
+
 export function Home() {
+  const { navigate } = useNavigation<HomeNavigation>();
+
+  function handleGoToCarDetails() {
+    navigate('CarDetails');
+  }
+
   return (
     <Container>
       <StatusBar
@@ -28,6 +39,7 @@ export function Home() {
               price: 120,
             }}
             thumbnail="https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png"
+            onPress={handleGoToCarDetails}
           />
         )}
       />
