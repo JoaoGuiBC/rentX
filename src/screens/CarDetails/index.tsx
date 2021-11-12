@@ -1,10 +1,13 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Button } from '../../components/Button';
+import { RootStackParamList } from '../../routes/stack.routes';
 
 import speedSvg from '../../assets/speed.svg';
 import accelerationSvg from '../../assets/acceleration.svg';
@@ -30,7 +33,18 @@ import {
   Footer,
 } from './styles';
 
+type CarDetailsNavigation = StackNavigationProp<
+  RootStackParamList,
+  'CarDetails'
+>;
+
 export function CarDetails() {
+  const { navigate } = useNavigation<CarDetailsNavigation>();
+
+  function handleConfirmRental() {
+    navigate('Scheduling');
+  }
+
   return (
     <Container>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
@@ -76,7 +90,10 @@ export function CarDetails() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button
+          title="Escolher período do aluguel"
+          onPress={handleConfirmRental}
+        />
       </Footer>
     </Container>
   );

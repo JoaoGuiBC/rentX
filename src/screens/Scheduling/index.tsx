@@ -1,9 +1,12 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/core';
 import { useTheme } from 'styled-components';
 
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
+import { RootStackParamList } from '../../routes/stack.routes';
 
 import ArrowSvg from '../../assets/arrow.svg';
 
@@ -20,8 +23,19 @@ import {
 } from './styles';
 import { Calendar } from '../../components/Calendar';
 
+type SchedulingNavigation = StackNavigationProp<
+  RootStackParamList,
+  'Scheduling'
+>;
+
 export function Scheduling() {
   const theme = useTheme();
+
+  const { navigate } = useNavigation<SchedulingNavigation>();
+
+  function handleConfirmRental() {
+    navigate('SchedulingDetails');
+  }
 
   return (
     <Container>
@@ -59,7 +73,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );
