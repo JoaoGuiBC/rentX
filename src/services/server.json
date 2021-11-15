@@ -69,7 +69,7 @@
         },
         {
           "type": "gasoline_motor",
-          "name": "Gasoline"
+          "name": "Gasolina"
         },
         {
           "type": "exchange",
@@ -111,7 +111,7 @@
         },
         {
           "type": "gasoline_motor",
-          "name": "Gasoline"
+          "name": "Gasolina"
         },
         {
           "type": "exchange",

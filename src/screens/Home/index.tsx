@@ -21,8 +21,8 @@ export function Home() {
 
   const { navigate } = useNavigation<HomeNavigation>();
 
-  function handleGoToCarDetails() {
-    navigate('CarDetails');
+  function handleGoToCarDetails(car: CarDTO) {
+    navigate('CarDetails', { car });
   }
 
   useEffect(() => {
@@ -64,8 +64,9 @@ export function Home() {
                 period: item.rent.period,
                 price: item.rent.price,
               }}
+              fuelType={item.fuel_type}
               thumbnail={item.thumbnail}
-              onPress={handleGoToCarDetails}
+              onPress={() => handleGoToCarDetails(item)}
             />
           )}
         />
