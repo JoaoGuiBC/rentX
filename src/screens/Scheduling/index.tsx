@@ -31,10 +31,14 @@ type SchedulingNavigation = StackNavigationProp<
 export function Scheduling() {
   const theme = useTheme();
 
-  const { navigate } = useNavigation<SchedulingNavigation>();
+  const { navigate, goBack } = useNavigation<SchedulingNavigation>();
 
   function handleConfirmRental() {
     navigate('SchedulingDetails');
+  }
+
+  function handleGoBack() {
+    goBack();
   }
 
   return (
@@ -45,7 +49,7 @@ export function Scheduling() {
         translucent
       />
       <Header>
-        <BackButton color={theme.colors.shape} onPress={() => {}} />
+        <BackButton color={theme.colors.shape} onPress={handleGoBack} />
 
         <Title>
           Escolha uma {'\n'}

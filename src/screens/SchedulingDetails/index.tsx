@@ -53,17 +53,21 @@ type SchedulingDetailsNavigation = StackNavigationProp<
 export function SchedulingDetails() {
   const theme = useTheme();
 
-  const { navigate } = useNavigation<SchedulingDetailsNavigation>();
+  const { navigate, goBack } = useNavigation<SchedulingDetailsNavigation>();
 
   function handleConfirmRental() {
     navigate('SchedulingComplete');
+  }
+
+  function handleGoBack() {
+    goBack();
   }
 
   return (
     <Container>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={handleGoBack} />
       </Header>
 
       <CarImages>
