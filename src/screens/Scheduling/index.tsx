@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation, useRoute } from '@react-navigation/core';
 import { useTheme } from 'styled-components';
 import { format } from 'date-fns';
 
@@ -9,8 +9,10 @@ import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { RootStackParamList } from '../../routes/stack.routes';
 import { Calendar, DayProps, MarkedDateProps } from '../../components/Calendar';
+import { Alert } from '../../components/Alert';
 import { generateInterval } from '../../components/Calendar/generateInterval';
 import { getPlatformDate } from '../../utils/getPlataformDate';
+import { CarDTO } from '../../dtos/CarDTO';
 
 import ArrowSvg from '../../assets/arrow.svg';
 
@@ -38,7 +40,12 @@ interface RentalPeriodInterface {
   endFormatted?: string;
 }
 
+interface RouteParams {
+  car: CarDTO;
+}
+
 export function Scheduling() {
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodInterface>(
     {} as RentalPeriodInterface
   );
@@ -50,11 +57,20 @@ export function Scheduling() {
   );
 
   const theme = useTheme();
+  const route = useRoute();
+  const { car } = route.params as RouteParams;
 
   const { navigate, goBack } = useNavigation<SchedulingNavigation>();
 
   function handleConfirmRental() {
-    navigate('SchedulingDetails');
+    if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
+      setIsAlertVisible(true);
+    } else {
+      navigate('SchedulingDetails', {
+        car,
+        dates: Object.keys(markedDates),
+      });
+    }
   }
 
   function handleGoBack() {
@@ -88,12 +104,23 @@ export function Scheduling() {
     });
   }
 
+  function handleCloseAlert() {
+    setIsAlertVisible(false);
+  }
+
   return (
     <Container>
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
         translucent
+      />
+
+      <Alert
+        isAlertVisible={isAlertVisible}
+        closeAlert={handleCloseAlert}
+        title="Atenção"
+        message="Selecione um período de tempo para alugar"
       />
       <Header>
         <BackButton color={theme.colors.shape} onPress={handleGoBack} />
