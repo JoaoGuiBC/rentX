@@ -11,10 +11,13 @@ import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Button } from '../../components/Button';
+import { Alert } from '../../components/Alert';
+
 import { RootStackParamList } from '../../routes/stack.routes';
 import { CarDTO } from '../../dtos/CarDTO';
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 import { getPlatformDate } from '../../utils/getPlataformDate';
+import { api } from '../../services/api';
 
 import {
   Container,
@@ -58,6 +61,7 @@ interface RentalPeriodInterface {
 }
 
 export function SchedulingDetails() {
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodInterface>(
     {} as RentalPeriodInterface
   );
@@ -69,12 +73,32 @@ export function SchedulingDetails() {
 
   const rentTotal = Number(dates.length * car.rent.price);
 
-  function handleConfirmRental() {
-    navigate('SchedulingComplete');
+  async function handleConfirmRental() {
+    try {
+      const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
+
+      const unavailableDates = [
+        ...schedulesByCar.data.unavailable_dates,
+        ...dates,
+      ];
+
+      await api.put(`/schedules_bycars/${car.id}`, {
+        id: car.id,
+        unavailable_dates: unavailableDates,
+      });
+
+      navigate('SchedulingComplete');
+    } catch (_) {
+      setIsAlertVisible(true);
+    }
   }
 
   function handleGoBack() {
     goBack();
+  }
+
+  function handleCloseAlert() {
+    setIsAlertVisible(false);
   }
 
   useEffect(() => {
@@ -90,6 +114,14 @@ export function SchedulingDetails() {
   return (
     <Container>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
+
+      <Alert
+        isAlertVisible={isAlertVisible}
+        closeAlert={handleCloseAlert}
+        title="Erro"
+        message="Não foi possível agendar o aluguel, tente novamente mais tarde"
+      />
+
       <Header>
         <BackButton onPress={handleGoBack} />
       </Header>
