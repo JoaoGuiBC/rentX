@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from 'styled-components';
 
 import { Header } from '../../components/Header';
 import { Car } from '../../components/Car';
@@ -11,7 +13,7 @@ import { api } from '../../services/api';
 import { CarDTO } from '../../dtos/CarDTO';
 import { RootStackParamList } from '../../routes/stack.routes';
 
-import { Container, CarList } from './styles';
+import { Container, CarList, MyCarsButton } from './styles';
 
 type HomeNavigation = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -20,9 +22,13 @@ export function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   const { navigate } = useNavigation<HomeNavigation>();
+  const theme = useTheme();
 
   function handleGoToCarDetails(car: CarDTO) {
     navigate('CarDetails', { car });
+  }
+  function handleGoToMyCars() {
+    navigate('MyCars');
   }
 
   useEffect(() => {
@@ -71,6 +77,10 @@ export function Home() {
           )}
         />
       )}
+
+      <MyCarsButton onPress={handleGoToMyCars}>
+        <Ionicons name="ios-car-sport" size={32} color={theme.colors.shape} />
+      </MyCarsButton>
     </Container>
   );
 }
