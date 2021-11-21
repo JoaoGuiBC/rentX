@@ -3,6 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
 import { FlatList, StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
+import { AntDesign } from '@expo/vector-icons';
 import { BackButton } from '../../components/BackButton';
 import { Car } from '../../components/Car';
 
@@ -19,7 +20,13 @@ import {
   Appointments,
   AppointmentsTitle,
   AppointmentsQuantity,
+  CarWrapper,
+  CarFooter,
+  CarFooterTitle,
+  CarFooterPeriod,
+  CarFooterDate,
 } from './styles';
+import { Load } from '../../components/Load';
 
 type MyCarsNavigation = StackNavigationProp<RootStackParamList, 'MyCars'>;
 
@@ -27,6 +34,8 @@ interface carsProps {
   id: number;
   use_id: number;
   car: CarDTO;
+  startDate: string;
+  endDate: string;
 }
 
 export function MyCars() {
@@ -77,30 +86,51 @@ export function MyCars() {
         <Subtitle>Conforto, segurança e praticidade.</Subtitle>
       </Header>
 
-      <Content>
-        <Appointments>
-          <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
-          <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
-        </Appointments>
+      {isLoading ? (
+        <Load />
+      ) : (
+        <Content>
+          <Appointments>
+            <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
+            <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
+          </Appointments>
 
-        <FlatList
-          data={cars}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => (
-            <Car
-              brand={item.car.brand}
-              name={item.car.name}
-              rent={{
-                period: item.car.rent.period,
-                price: item.car.rent.price,
-              }}
-              fuelType={item.car.fuel_type}
-              thumbnail={item.car.thumbnail}
-              onPress={() => {}}
-            />
-          )}
-        />
-      </Content>
+          <FlatList
+            data={cars}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => (
+              <CarWrapper>
+                <Car
+                  brand={item.car.brand}
+                  name={item.car.name}
+                  rent={{
+                    period: item.car.rent.period,
+                    price: item.car.rent.price,
+                  }}
+                  fuelType={item.car.fuel_type}
+                  thumbnail={item.car.thumbnail}
+                  onPress={() => {}}
+                />
+                <CarFooter>
+                  <CarFooterTitle>Período</CarFooterTitle>
+                  <CarFooterPeriod>
+                    <CarFooterDate>{item.startDate}</CarFooterDate>
+
+                    <AntDesign
+                      name="arrowright"
+                      size={20}
+                      color={theme.colors.title}
+                      style={{ marginHorizontal: 10 }}
+                    />
+
+                    <CarFooterDate>{item.endDate}</CarFooterDate>
+                  </CarFooterPeriod>
+                </CarFooter>
+              </CarWrapper>
+            )}
+          />
+        </Content>
+      )}
     </Container>
   );
 }

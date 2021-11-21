@@ -262,43 +262,6 @@
     {
       "id": "535e8de8-721b-4bac-8b72-7d29be7da467",
       "unavailable_dates": [
-        "2021-06-01",
-        "2021-06-02",
-        "2021-06-09",
-        "2021-05-25",
-        "2021-07-16",
-        "2021-07-17",
-        "2021-07-18",
-        "2021-05-28",
-        "2021-05-29",
-        "2021-05-30",
-        "2021-05-28",
-        "2021-05-29",
-        "2021-05-30",
-        "2021-05-28",
-        "2021-05-29",
-        "2021-05-30",
-        "2021-06-16",
-        "2021-06-17",
-        "2021-06-18",
-        "2021-11-18",
-        "2021-11-19",
-        "2021-11-20",
-        "2021-11-21",
-        "2021-11-22",
-        "2021-11-23",
-        "2021-11-24",
-        "2021-11-25",
-        "2021-11-20",
-        "2021-11-21",
-        "2021-11-22",
-        "2021-11-23",
-        "2021-11-24",
-        "2021-11-25",
-        "2021-11-26",
-        "2021-11-27",
-        "2021-11-28",
-        "2021-11-20",
         "2021-11-21",
         "2021-11-22",
         "2021-11-23",
@@ -312,71 +275,82 @@
     {
       "id": "ffb71f55-818a-48b1-b7d2-2efc406ede25",
       "unavailable_dates": [
-        "2021-06-15",
-        "2021-06-16",
-        "2021-06-17",
-        "2021-06-01",
-        "2021-06-02",
-        "2021-06-03",
-        "2021-06-04",
-        "2021-05-29",
-        "2021-05-30",
-        "2021-05-29",
-        "2021-05-30"
+        "2021-11-21",
+        "2021-11-22",
+        "2021-11-23",
+        "2021-11-24",
+        "2021-11-25",
+        "2021-11-26",
+        "2021-11-27",
+        "2021-11-28"
       ]
     },
     {
       "id": "52930821-cbea-4b05-9f45-7c02b1bb0d8c",
-      "unavailable_dates": [
-        "2021-08-01",
-        "2021-08-21",
-        "2021-08-22",
-        "2021-06-19",
-        "2021-06-20",
-        "2021-07-15",
-        "2021-07-16",
-        "2021-07-17",
-        "2021-07-18",
-        "2021-05-28",
-        "2021-05-29",
-        "2021-05-30"
-      ]
+      "unavailable_dates": []
     },
     {
       "id": "49983f6c-a46a-4dfd-a86e-425b8c72e086",
-      "unavailable_dates": [
-        "2021-06-19",
-        "2021-06-20",
-        "2021-06-21"
-      ]
+      "unavailable_dates": []
     },
     {
       "id": "508e7193-0078-4615-9071-920b59038fda",
-      "unavailable_dates": [
-        "2021-06-01",
-        "2021-06-02",
-        "2021-06-03",
-        "2021-06-10",
-        "2021-06-11",
-        "2021-06-12",
-        "2021-06-17",
-        "2021-06-18",
-        "2021-06-19"
-      ]
+      "unavailable_dates": []
     },
     {
       "id": "59626707-88c5-4877-9350-07f372c0905a",
-      "unavailable_dates": [
-        "2021-06-28",
-        "2021-06-29",
-        "2021-07-01",
-        "2021-12-23",
-        "2021-12-24",
-        "2021-12-25"
-      ]
+      "unavailable_dates": []
     }
   ],
   "schedules_byuser": [
+    {
+      "user_id": 1,
+      "car": {
+        "id": "ffb71f55-818a-48b1-b7d2-2efc406ede25",
+        "brand": "Porsche",
+        "name": "Panamera",
+        "about": "O Panamera é um automóvel de luxo coupé com porte grande. Tem motorização dianteira V6 e V8. A tração é integral com uma caixa PDK de sete mudanças e dupla embreagem.",
+        "rent": {
+          "period": "Ao dia",
+          "price": 340
+        },
+        "fuel_type": "gasoline_motor",
+        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/2.png",
+        "accessories": [
+          {
+            "type": "speed",
+            "name": "315km/h"
+          },
+          {
+            "type": "acceleration",
+            "name": "2.9s"
+          },
+          {
+            "type": "turning_diameter",
+            "name": "700 HP"
+          },
+          {
+            "type": "gasoline_motor",
+            "name": "Gasolina"
+          },
+          {
+            "type": "exchange",
+            "name": "Auto"
+          },
+          {
+            "type": "seats",
+            "name": "4 pessoas"
+          }
+        ],
+        "photos": [
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/4.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/5.png"
+        ]
+      },
+      "startDate": "21/11/2021",
+      "endDate": "28/11/2021",
+      "id": 1
+    },
     {
       "user_id": 1,
       "car": {
@@ -422,53 +396,8 @@
           "https://storage.googleapis.com/golden-wind/ignite/react-native/images/3.png"
         ]
       },
-      "id": 1
-    },
-    {
-      "user_id": 1,
-      "car": {
-        "id": "59626707-88c5-4877-9350-07f372c0905a",
-        "brand": "mitsubishi",
-        "name": "Lancer",
-        "about": "Mitsubishi Lancer é um belo e agressivo carro. Além do mais, ele encanta pelo conforto e pela eficiência. Bastante firme e estável para dirigir com tranquilidade e segurança.",
-        "rent": {
-          "period": "Ao dia",
-          "price": 220
-        },
-        "fuel_type": "hybrid_motor",
-        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/6.png",
-        "accessories": [
-          {
-            "type": "speed",
-            "name": "180km/h"
-          },
-          {
-            "type": "acceleration",
-            "name": "2.0s"
-          },
-          {
-            "type": "turning_diameter",
-            "name": "600 HP"
-          },
-          {
-            "type": "hybrid_motor",
-            "name": "Híbrido"
-          },
-          {
-            "type": "exchange",
-            "name": "Auto"
-          },
-          {
-            "type": "seats",
-            "name": "5 pessoas"
-          }
-        ],
-        "photos": [
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/15.png",
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/16.png",
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/17.png"
-        ]
-      },
+      "startDate": "21/11/2021",
+      "endDate": "28/11/2021",
       "id": 2
     }
   ]
