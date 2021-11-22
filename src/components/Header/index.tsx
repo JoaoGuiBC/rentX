@@ -5,11 +5,15 @@ import Logo from '../../assets/logo.svg';
 
 import { Container, TotalCars } from './styles';
 
-export function Header() {
+interface HeaderProps {
+  carsQuantity: number;
+}
+
+export function Header({ carsQuantity }: HeaderProps) {
   return (
     <Container>
       <Logo width={RFValue(108)} height={RFValue(12)} />
-      <TotalCars>Total 12 carros</TotalCars>
+      <TotalCars>Total de {carsQuantity} carros</TotalCars>
     </Container>
   );
 }

@@ -54,7 +54,7 @@ export function Home() {
         backgroundColor="transparent"
         translucent
       />
-      <Header />
+      <Header carsQuantity={cars.length} />
 
       {isLoading ? (
         <Load />
