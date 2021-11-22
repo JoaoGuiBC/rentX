@@ -61,6 +61,7 @@ interface RentalPeriodInterface {
 }
 
 export function SchedulingDetails() {
+  const [isLoading, setIsloading] = useState(false);
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodInterface>(
     {} as RentalPeriodInterface
@@ -75,6 +76,7 @@ export function SchedulingDetails() {
 
   async function handleConfirmRental() {
     try {
+      setIsloading(true);
       const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
 
       const unavailableDates = [
@@ -106,6 +108,8 @@ export function SchedulingDetails() {
       navigate('SchedulingComplete');
     } catch (_) {
       setIsAlertVisible(true);
+    } finally {
+      setIsloading(false);
     }
   }
 
@@ -209,6 +213,8 @@ export function SchedulingDetails() {
           title="Alugar agora"
           color={theme.colors.success}
           onPress={handleConfirmRental}
+          enabled={!isLoading}
+          loading={isLoading}
         />
       </Footer>
     </Container>
