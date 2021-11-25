@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/core';
+import { StackNavigationProp } from '@react-navigation/stack';
 import {
   interpolate,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -9,10 +12,16 @@ import {
 import BrandSvg from '../../assets/brand.svg';
 import LogoSvg from '../../assets/logo.svg';
 
+import { RootStackParamList } from '../../routes/stack.routes';
+
 import { Container, AnimatedView } from './styles';
+
+type SplashNavigation = StackNavigationProp<RootStackParamList, 'Splash'>;
 
 export function Splash() {
   const splashAnimation = useSharedValue(0);
+
+  const { navigate } = useNavigation<SplashNavigation>();
 
   const brandStyle = useAnimatedStyle(() => {
     return {
@@ -30,8 +39,16 @@ export function Splash() {
     };
   });
 
+  function startApp() {
+    navigate('Home');
+  }
+
   useEffect(() => {
-    splashAnimation.value = withTiming(75, { duration: 4000 });
+    splashAnimation.value = withTiming(75, { duration: 4000 }, () => {
+      'worklet';
+
+      runOnJS(startApp)();
+    });
   }, []);
 
   return (
