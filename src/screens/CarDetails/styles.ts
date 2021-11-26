@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import Animated from 'react-native-reanimated';
 import {
   getBottomSpace,
   getStatusBarHeight,
@@ -20,7 +21,13 @@ export const Header = styled.View`
   margin-left: 24px;
 `;
 
-export const CarImages = styled.View`
+export const AnimatedHeader = styled(Animated.View)`
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+`;
+
+export const CarImages = styled(Animated.View)`
   margin-top: ${getStatusBarHeight() + 32}px;
 `;
 
